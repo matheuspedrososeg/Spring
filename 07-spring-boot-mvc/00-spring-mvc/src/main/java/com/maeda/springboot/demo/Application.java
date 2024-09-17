@@ -1,15 +1,13 @@
-package com.luv2code.springboot.cruddemo;
+package com.maeda.springboot.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
-
 @SpringBootApplication
-public class CruddemoApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CruddemoApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
