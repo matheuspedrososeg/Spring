@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Student Confirmation</title>
+    <link rel="stylesheet"
+          th:href="@{/css/demo.css}"
+    />
 </head>
 <body>
-$END$
+<div class="funny">
+    Student name: <span th:text="${student.firstName} + ' ' + ${student.lastName}"/>
+    <br><br>
+    Student country: <span th:text="${student.country}"/>
+    <br><br>
+    Student´s favorite programming language: <span th:text="${student.favoriteLanguage}"/>
+    <br><br>
+    Student´s favorite operating systems:
+    <ul>
+        <li th:each="tempSystem : ${student.favoriteSystems}" th:text="${tempSystem}" />
+    </ul>
+
+
+    <!--    Student name: Hello World!-->
+</div>
+
+
+<br><br>
+
 </body>
 </html>
