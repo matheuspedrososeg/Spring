@@ -12,13 +12,28 @@
     Fill out the form. (*) means required.
 </i>
 <br><br>
-<form th:action="@{/processForm}" th:object="customer" method="post">
-    First name: <input  type="text" th:field="*{firstName}" />
+<form th:action="@{/processForm}" th:object="${customer}" method="post">
+    First name: <input type="text" th:field="*{firstName}" autocomplete="off" />
     <br><br>
-    Last name: <input  type="text" th:field="*{lastName}" />
+    Last name (*): <input  type="text" th:field="*{lastName}" autocomplete="off" />
+
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"  class="error"></span>
+
     <br><br>
 
-    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+    Free passes: <input type="text" th:field="*{freePasses}" autocomplete="off"/>
+    <span th:if="${#fields.hasErrors('freePasses')}" th:errors="*{freePasses}" class="error"></span>
+
+    <br><br>
+
+    Postal Code: <input type="text" th:field="*{postalCode}" autocomplete="off"/>
+    <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error"></span>
+    <br><br>
+    Course Code: <input type="text" th:field="*{courseCode}" autocomplete="off"/>
+    <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}" class="error"></span>
+    <br><br>
+    <input type="submit" value="Submit" />
+
 </form>
 
 </body>
