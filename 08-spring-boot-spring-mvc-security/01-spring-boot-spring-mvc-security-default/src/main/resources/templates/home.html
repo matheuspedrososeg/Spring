@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org" lang="en"
+       xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Company Home Page</title>
@@ -8,5 +9,35 @@
 <h2>Company Home Page</h2>
 <hr>
 Welome to the Company´s home page!
+
+<hr>
+<p>
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
+
+
+
+<div sec:authorize="hasRole('MANAGER')">
+<p>
+    <hr>
+    <a th:href="@{/leaders}">Leadership Meeting</a>
+    Only for manager peeps.
+</p>
+
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+<p>
+    <a th:href="@{/systems}">IT Systems Meeting</a>
+    Only for admin peeps.
+</p>
+</div>
+
+<hr>
+<form action="#" th:action="@{logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form>
+
 </body>
 </html>
