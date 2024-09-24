@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DemoSecurityConfig {
 
-//
+
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
