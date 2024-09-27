@@ -22,8 +22,28 @@ public class AdvancedMappingApplication {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
         return runner -> {
-            findInstructorWithCoursesJoinFetch(appDAO);
+            deleteCourse(appDAO);
         };
+    }
+
+    private void deleteCourse(AppDAO appDAO) {
+        int id = 10;
+        appDAO.deleteCourseById(10);
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+        int courseId = 10;
+        Course course = appDAO.findCourseById(courseId);
+
+        course.setTitle("Enjoy the simple things!");
+        appDAO.update(course);
+    }
+
+    private void updateInstructor(AppDAO appDAO) {
+        int id = 1;
+        Instructor instructor = appDAO.findInstructorById(1);
+        instructor.setLastName("TESTER");
+        appDAO.update(instructor);
     }
 
     private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
