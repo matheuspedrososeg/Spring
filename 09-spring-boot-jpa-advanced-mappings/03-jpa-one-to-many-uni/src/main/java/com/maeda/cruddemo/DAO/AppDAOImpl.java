@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class AppDAOImpl implements AppDAO{
+public class AppDAOImpl implements AppDAO {
 
     private EntityManager entityManager;
 
@@ -63,7 +63,7 @@ public class AppDAOImpl implements AppDAO{
 
     @Override
     public List<Course> findCoursesByInstructorId(int id) {
-        TypedQuery<Course> query= entityManager.createQuery
+        TypedQuery<Course> query = entityManager.createQuery
                 ("from Course where instructor.id = :data", Course.class);
         query.setParameter("data", id);
 
@@ -75,11 +75,11 @@ public class AppDAOImpl implements AppDAO{
         TypedQuery<Instructor> query = entityManager.createQuery(
                 "select i from Instructor i" +
                         " JOIN FETCH i.courses" +
-                            " JOIN FETCH i.instructorDetail" +
-                                " where i.id = :data", Instructor.class);
-            query.setParameter("data", id);
+                        " JOIN FETCH i.instructorDetail" +
+                        " where i.id = :data", Instructor.class);
+        query.setParameter("data", id);
 
-            return query.getSingleResult();
+        return query.getSingleResult();
     }
 
     @Override
@@ -94,7 +94,6 @@ public class AppDAOImpl implements AppDAO{
     }
 
 
-
     @Override
     @Transactional
     public void update(Course course) {
@@ -106,6 +105,23 @@ public class AppDAOImpl implements AppDAO{
     public void deleteCourseById(int id) {
         Course course = findCourseById(id);
         entityManager.remove(course);
+    }
+
+    @Override
+    @Transactional
+    public void save(Course course) {
+        entityManager.persist(course);
+    }
+
+    @Override
+    public Course findCourseAndReviewsByCourseId(int id) {
+        TypedQuery<Course> query = entityManager.createQuery("select c from Course c " +
+                "JOIN FETCH c.reviews" +
+                " where c.id = :data", Course.class);
+
+        query.setParameter("data", id);
+
+         return query.getSingleResult();
     }
 
 
