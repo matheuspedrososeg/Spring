@@ -16,6 +16,7 @@ public class AdvancedMappingApplication {
         SpringApplication.run(AdvancedMappingApplication.class, args);
     }
 
+
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 

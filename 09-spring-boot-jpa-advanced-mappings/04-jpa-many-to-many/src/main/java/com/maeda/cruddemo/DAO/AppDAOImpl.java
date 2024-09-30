@@ -143,6 +143,7 @@ public class AppDAOImpl implements AppDAO {
     @Override
     @Transactional
     public void update(Student student) {
+
         entityManager.merge(student);
     }
 
