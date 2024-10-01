@@ -83,7 +83,14 @@ public class MyDemoLoggingAspect {
 
         long start = System.currentTimeMillis();
 
-        Object result = proceedingJoinPoint.proceed();
+        Object result = null;
+        try {
+            result = proceedingJoinPoint.proceed();
+        } catch (Exception exc) {
+            System.out.println(exc.getMessage());
+
+            throw exc;
+        }
 
         long end = System.currentTimeMillis();
 
@@ -92,6 +99,7 @@ public class MyDemoLoggingAspect {
 
         return result;
     }
+
 
 
 }

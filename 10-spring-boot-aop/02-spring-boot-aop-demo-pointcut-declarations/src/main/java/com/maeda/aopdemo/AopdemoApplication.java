@@ -22,8 +22,32 @@ public class AopdemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO, TrafficFortuneService trafficFortuneService) {
         return runner -> {
-            demoTheAroundAdvice(trafficFortuneService);
+            demoTheAroundAdviceRethrowException(trafficFortuneService);
         };
+    }
+
+    private void demoTheAroundAdviceRethrowException(TrafficFortuneService trafficFortuneService) {
+        System.out.println("\nMain program: demoTheAroundAdviceRethrowException");
+
+        boolean tripwire = true;
+        System.out.println("Calling getFortune()");
+        String data = trafficFortuneService.getFortune(tripwire);
+
+        System.out.println("\nFortune is: " + data);
+
+        System.out.println("Finished");
+    }
+
+    private void demoTheAroundAdviceHandleException(TrafficFortuneService trafficFortuneService) {
+        System.out.println("\nMain program: demoTheAroundAHandleExceptionAdvice");
+
+        boolean tripwire = true;
+        System.out.println("Calling getFortune()");
+        String data = trafficFortuneService.getFortune(tripwire);
+
+        System.out.println("\nFortune is: " + data);
+
+        System.out.println("Finished");
     }
 
     private void demoTheAroundAdvice(TrafficFortuneService trafficFortuneService) {
